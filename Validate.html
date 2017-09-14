@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#button").click(function(){
+        event.preventDefault();
+        $("#add").text("");
+        var Username = $("#Username");
+        $('#add').removeClass();
+        $('#add').addClass("Error");
+        var Password=$("#Password");
+        var Num = $("#Phone");
+        if (Username.val().length <6){
+          
+          $("#add").append("Error: Username should contain atleast six characters <br>");
+        }
+        if (Password.val().length <6){
+          
+          $("#add").append("Error: Password should contain atleast six characters <br>");
+        }
+        if (Num.val().length <6){
+          
+          $("#add").append("Error: Phone number should contain atleast six numbers <br>");
+        }
+        if (isNaN(Num.val())){
+          
+          $("#add").append("Error: Phone number should only contain numbers <br>");
+
+        }
+        else if (Username.val().length>=6 && Password.val().length>=6 && Num.val().length>=6 ){
+          $('#add').removeClass("Error")
+          $('#add').addClass("Success");
+          $("#add").append("Thank you! all the input fields are validated. <br>");
+        }
+
+
+
+      });
+
+    });
+  </script>
+  <style type="text/css">
+    body{
+      text-align: center;
+      margin: 100px;
+    }
+    .Error{
+      background-color: red;
+      color: white;
+      margin: 40px;
+    }
+    .Success{
+      background-color: green;
+      color: white;
+      margin:  40px;
+    }
+  </style>
+</head>
+<body>
+    <form>
+      <h2>Enter Username, Password and Phone Number below:</h2>
+      Username: <input id="Username" type="text" name="Username" placeholder="Enter Username"><br><br>
+      Password: <input type="text" name="Password" id="Password" placeholder="Enter your Password"><br><br>
+      Phone Number: <input type="text" name="Phone" id="Phone" placeholder="Enter your phone number"><br><br>
+
+      <br>
+      <input type="submit" name="submit" id="button" value="Validate"><br>
+      <p id="add"></p>
+    </form>
+</body>
+</html>
